@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ZPI
 {
@@ -8,7 +9,7 @@ namespace ZPI
         /// Wymagana zmienna projektanta.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
+        private Series series;
         /// <summary>
         /// Wyczyść wszystkie używane zasoby.
         /// </summary>
@@ -203,6 +204,8 @@ namespace ZPI
             this.chart1.Size = new System.Drawing.Size(521, 425);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
+            series = this.chart1.Series.Add("Tytuł");
+            series.ChartType = SeriesChartType.Spline;
             // 
             // medianLabel
             // 

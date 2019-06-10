@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json.Linq;
+using System;
+using System.Net;
 using System.Windows.Forms;
 
 namespace ZPI
@@ -24,7 +19,24 @@ namespace ZPI
 
         private void executeButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(CreateURL());
+            string url = CreateURL();
+            Console.WriteLine(url);
+
+            WebClient w = new WebClient();
+            string json = w.DownloadString(url);
+            Console.WriteLine(json);
+
+            dynamic main = JObject.Parse(json);
+            JArray rates = main.rates;
+
+            Console.WriteLine(rates.Count);
+
+            series.Points.Clear();
+            foreach (var tmp in rates)
+            {
+                dynamic jrates = JObject.Parse(tmp.ToString());
+                series.Points.AddXY(jrates.effectiveDate.ToString(), double.Parse(jrates.mid.ToString()));
+            }
         }
 
         public string CreateURL()
