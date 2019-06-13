@@ -34,7 +34,7 @@ namespace ZPI
                 dynamic main = JObject.Parse(json);
                 JArray rates = main.rates;
 
-                if (tableComboBox.SelectedItem.ToString() == "Avarage")
+                if (tableComboBox.SelectedItem.ToString() == "Average")
                 {
                     lista = new List<double>();
                     this.chart1.Series.Clear();
@@ -93,7 +93,7 @@ namespace ZPI
         {
             string url = "http://api.nbp.pl/api/exchangerates/rates/";
 
-            if (tableComboBox.SelectedItem.ToString() == "Avarage")
+            if (tableComboBox.SelectedItem.ToString() == "Average")
                 url += "a/";
             else
                 url += "c/";
@@ -140,7 +140,7 @@ namespace ZPI
 
         private void tableListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(tableComboBox.SelectedItem.ToString() == "Avarage")
+            if(tableComboBox.SelectedItem.ToString() == "Average")
             {
                 currencyLabel2.Visible = false;
                 currencyComboBox2.Visible = false;
@@ -186,25 +186,17 @@ namespace ZPI
 
         private double getStandardDeviation(List<double> doubleList)
         {
-            double average = doubleList.Average();
-            double sumOfDerivation = 0;
-            foreach (double value in doubleList)
-            {
-                sumOfDerivation += (value) * (value);
-            }
-            double sumOfDerivationAverage = sumOfDerivation / (doubleList.Count - 1);
-            return Math.Sqrt(sumOfDerivationAverage - (average * average));
+            return Math.Sqrt(getVariance(doubleList));
         }
         private double getVariance(List<double> doubleList)
         {
             double average = doubleList.Average();
-            double sumOfDerivation = 0;
+            double sumOfVariance = 0;
             foreach (double value in doubleList)
             {
-                sumOfDerivation += (value) * (value);
+                sumOfVariance += (value - average) * (value - average);
             }
-            double sumOfDerivationAverage = sumOfDerivation / (doubleList.Count - 1);
-            return sumOfDerivationAverage - (average * average);
+            return sumOfVariance / (doubleList.Count - 1);
         }
 
         private double getDominant(List<double> doubleList)

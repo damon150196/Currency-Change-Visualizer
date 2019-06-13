@@ -60,7 +60,7 @@ namespace ZPI
             this.tableComboBox.FormattingEnabled = true;
             this.tableComboBox.ItemHeight = 19;
             this.tableComboBox.Items.AddRange(new object[] {
-            "Avarage",
+            "Average",
             "buy/sold"});
             this.tableComboBox.Location = new System.Drawing.Point(120, 66);
             this.tableComboBox.Name = "tableComboBox";
