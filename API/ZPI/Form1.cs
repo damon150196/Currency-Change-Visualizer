@@ -1,41 +1,91 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ZPI
 {
     public partial class Form1 : Form
     {
+        List<double> lista;
+        Series series;
+        Series buy;
+        Series sold;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void periodListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine(periodComboBox.SelectedItem.ToString());
-        }
+        private void periodListBox_SelectedIndexChanged(object sender, EventArgs e) { }
 
         private void executeButton_Click(object sender, EventArgs e)
         {
             string url = CreateURL();
             Console.WriteLine(url);
-
             WebClient w = new WebClient();
-            string json = w.DownloadString(url);
-            Console.WriteLine(json);
-
-            dynamic main = JObject.Parse(json);
-            JArray rates = main.rates;
-
-            Console.WriteLine(rates.Count);
-
-            series.Points.Clear();
-            foreach (var tmp in rates)
+            try
             {
-                dynamic jrates = JObject.Parse(tmp.ToString());
-                series.Points.AddXY(jrates.effectiveDate.ToString(), double.Parse(jrates.mid.ToString()));
+
+                string json = w.DownloadString(url);
+                dynamic main = JObject.Parse(json);
+                JArray rates = main.rates;
+
+                if (tableComboBox.SelectedItem.ToString() == "Avarage")
+                {
+                    lista = new List<double>();
+                    this.chart1.Series.Clear();
+                    series = this.chart1.Series.Add(main.code.ToString());
+                    series.ChartType = SeriesChartType.Spline;
+                    series.Points.Clear();
+                    series.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    foreach (var tmp in rates)
+                    {
+                        dynamic jrates = JObject.Parse(tmp.ToString());
+                        series.Points.AddXY(jrates.effectiveDate.ToString(), double.Parse(jrates.mid.ToString()));
+                        lista.Add(double.Parse(jrates.mid.ToString()));
+                    }
+
+                    lista.Sort();
+
+                    double median = lista[lista.Count / 2];
+                    double dominant = getDominant(lista);
+                    double stdev = getStandardDeviation(lista);
+                    double variation = getVariance(lista);
+
+                    medianValue.Text = median.ToString("N4");
+                    dominantValue.Text = dominant.ToString("N4");
+                    standardDeviationValue.Text = stdev.ToString("N4");
+                    variationValue.Text = variation.ToString("N4");
+                }
+                else if (tableComboBox.SelectedItem.ToString() == "buy/sold")
+                {
+                    this.chart1.Series.Clear();
+                    buy = this.chart1.Series.Add(main.code.ToString() + " Buy");
+                    buy.ChartType = SeriesChartType.Spline;
+                    buy.Points.Clear();
+                    buy.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    sold = this.chart1.Series.Add(main.code.ToString() + " Sold");
+                    sold.ChartType = SeriesChartType.Spline;
+                    sold.Points.Clear();
+                    sold.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+                    foreach (var tmp in rates)
+                    {
+                        dynamic jrates = JObject.Parse(tmp.ToString());
+                        buy.Points.AddXY(jrates.effectiveDate.ToString(), double.Parse(jrates.bid.ToString()));
+                        sold.Points.AddXY(jrates.effectiveDate.ToString(), double.Parse(jrates.ask.ToString()));
+                    }
+                }
+            }
+            catch(WebException)
+            {
+                string message = currencyComboBox1.Text + " is not avalaibe in " + tableComboBox.Text;
+                string caption = "Error";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                MessageBox.Show(message, caption, buttons);
             }
         }
 
@@ -94,12 +144,84 @@ namespace ZPI
             {
                 currencyLabel2.Visible = false;
                 currencyComboBox2.Visible = false;
+
+                medianLabel.Visible = true;
+                medianValue.Visible = true;
+                dominantLable.Visible = true;
+                dominantValue.Visible = true;
+                standardDeviationLabel.Visible = true;
+                standardDeviationValue.Visible = true;
+                variationLabel.Visible = true;
+                variationValue.Visible = true;
+            }
+            else if (tableComboBox.SelectedItem.ToString() == "buy/sold")
+            {
+                currencyLabel2.Visible = false;
+                currencyComboBox2.Visible = false;
+
+                medianLabel.Visible = false;
+                medianValue.Visible = false;
+                dominantLable.Visible = false;
+                dominantValue.Visible = false;
+                standardDeviationLabel.Visible = false;
+                standardDeviationValue.Visible = false;
+                variationLabel.Visible = false;
+                variationValue.Visible = false;
             }
             else
             {
                 currencyLabel2.Visible = true;
                 currencyComboBox2.Visible = true;
+
+                medianLabel.Visible = false;
+                medianValue.Visible = false;
+                dominantLable.Visible = false;
+                dominantValue.Visible = false;
+                standardDeviationLabel.Visible = false;
+                standardDeviationValue.Visible = false;
+                variationLabel.Visible = false;
+                variationValue.Visible = false;
             }
+        }
+
+        private double getStandardDeviation(List<double> doubleList)
+        {
+            double average = doubleList.Average();
+            double sumOfDerivation = 0;
+            foreach (double value in doubleList)
+            {
+                sumOfDerivation += (value) * (value);
+            }
+            double sumOfDerivationAverage = sumOfDerivation / (doubleList.Count - 1);
+            return Math.Sqrt(sumOfDerivationAverage - (average * average));
+        }
+        private double getVariance(List<double> doubleList)
+        {
+            double average = doubleList.Average();
+            double sumOfDerivation = 0;
+            foreach (double value in doubleList)
+            {
+                sumOfDerivation += (value) * (value);
+            }
+            double sumOfDerivationAverage = sumOfDerivation / (doubleList.Count - 1);
+            return sumOfDerivationAverage - (average * average);
+        }
+
+        private double getDominant(List<double> doubleList)
+        {
+            Dictionary<double, int> tmp = new Dictionary<double, int>();
+
+            foreach(double d in doubleList)
+            {
+                if(tmp.Keys.Contains(d))
+                    tmp[d]++;
+                else
+                    tmp.Add(d, 0);
+            }
+            
+            var sortedDict = from entry in tmp orderby entry.Value ascending select entry;
+            
+            return sortedDict.Last().Key;
         }
     }
 }

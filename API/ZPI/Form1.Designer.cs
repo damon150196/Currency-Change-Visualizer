@@ -9,7 +9,6 @@ namespace ZPI
         /// Wymagana zmienna projektanta.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private Series series;
         /// <summary>
         /// Wyczyść wszystkie używane zasoby.
         /// </summary>
@@ -191,21 +190,15 @@ namespace ZPI
             // 
             chartArea2.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
             this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(270, 10);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
             this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(521, 425);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
-            series = this.chart1.Series.Add("Tytuł");
-            series.ChartType = SeriesChartType.Spline;
             // 
             // medianLabel
             // 
