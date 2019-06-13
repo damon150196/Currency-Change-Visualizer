@@ -1,4 +1,7 @@
-﻿namespace ZPI
+﻿using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace ZPI
 {
     partial class Form1
     {
@@ -6,7 +9,7 @@
         /// Wymagana zmienna projektanta.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-
+        private Series series;
         /// <summary>
         /// Wyczyść wszystkie używane zasoby.
         /// </summary>
@@ -28,17 +31,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.tableListBox = new System.Windows.Forms.ListBox();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            this.tableComboBox = new System.Windows.Forms.ComboBox();
             this.tableLabel = new System.Windows.Forms.Label();
             this.periodLabel = new System.Windows.Forms.Label();
-            this.periodListBox = new System.Windows.Forms.ListBox();
+            this.periodComboBox = new System.Windows.Forms.ComboBox();
             this.currencyLabel1 = new System.Windows.Forms.Label();
-            this.currencyListBox1 = new System.Windows.Forms.ListBox();
+            this.currencyComboBox1 = new System.Windows.Forms.ComboBox();
             this.currencyLabel2 = new System.Windows.Forms.Label();
-            this.currencyListBox2 = new System.Windows.Forms.ListBox();
+            this.currencyComboBox2 = new System.Windows.Forms.ComboBox();
             this.executeButton = new System.Windows.Forms.Button();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.medianLabel = new System.Windows.Forms.Label();
@@ -52,110 +55,162 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableListBox
+            // tableComboBox
             // 
-            this.tableListBox.FormattingEnabled = true;
-            this.tableListBox.Location = new System.Drawing.Point(120, 70);
-            this.tableListBox.Name = "tableListBox";
-            this.tableListBox.Size = new System.Drawing.Size(90, 30);
-            this.tableListBox.TabIndex = 0;
+            this.tableComboBox.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableComboBox.FormattingEnabled = true;
+            this.tableComboBox.ItemHeight = 19;
+            this.tableComboBox.Items.AddRange(new object[] {
+            "Avarage",
+            "buy/sold"});
+            this.tableComboBox.Location = new System.Drawing.Point(120, 66);
+            this.tableComboBox.Name = "tableComboBox";
+            this.tableComboBox.Size = new System.Drawing.Size(140, 27);
+            this.tableComboBox.TabIndex = 0;
+            this.tableComboBox.SelectedIndexChanged += new System.EventHandler(this.tableListBox_SelectedIndexChanged);
+            this.tableComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
             // tableLabel
             // 
             this.tableLabel.AutoSize = true;
-            this.tableLabel.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tableLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLabel.Location = new System.Drawing.Point(10, 70);
             this.tableLabel.Name = "tableLabel";
-            this.tableLabel.Size = new System.Drawing.Size(70, 24);
+            this.tableLabel.Size = new System.Drawing.Size(63, 19);
             this.tableLabel.TabIndex = 1;
-            this.tableLabel.Text = "Table";
+            this.tableLabel.Text = "Course";
             // 
             // periodLabel
             // 
             this.periodLabel.AutoSize = true;
-            this.periodLabel.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.periodLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.periodLabel.Location = new System.Drawing.Point(10, 110);
             this.periodLabel.Name = "periodLabel";
-            this.periodLabel.Size = new System.Drawing.Size(82, 24);
+            this.periodLabel.Size = new System.Drawing.Size(63, 19);
             this.periodLabel.TabIndex = 3;
             this.periodLabel.Text = "Period";
             // 
-            // periodListBox
+            // periodComboBox
             // 
-            this.periodListBox.FormattingEnabled = true;
-            this.periodListBox.Location = new System.Drawing.Point(120, 110);
-            this.periodListBox.Name = "periodListBox";
-            this.periodListBox.Size = new System.Drawing.Size(90, 30);
-            this.periodListBox.TabIndex = 2;
+            this.periodComboBox.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.periodComboBox.FormattingEnabled = true;
+            this.periodComboBox.ItemHeight = 19;
+            this.periodComboBox.Items.AddRange(new object[] {
+            "1 week",
+            "2 weeks",
+            "1 month",
+            "3 months",
+            "6 months",
+            "1 year"});
+            this.periodComboBox.Location = new System.Drawing.Point(120, 110);
+            this.periodComboBox.Name = "periodComboBox";
+            this.periodComboBox.Size = new System.Drawing.Size(140, 27);
+            this.periodComboBox.TabIndex = 2;
+            this.periodComboBox.SelectedIndexChanged += new System.EventHandler(this.periodListBox_SelectedIndexChanged);
+            this.periodComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
             // currencyLabel1
             // 
             this.currencyLabel1.AutoSize = true;
-            this.currencyLabel1.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currencyLabel1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currencyLabel1.Location = new System.Drawing.Point(10, 190);
             this.currencyLabel1.Name = "currencyLabel1";
-            this.currencyLabel1.Size = new System.Drawing.Size(106, 24);
+            this.currencyLabel1.Size = new System.Drawing.Size(81, 19);
             this.currencyLabel1.TabIndex = 7;
             this.currencyLabel1.Text = "Currency";
             // 
-            // currencyListBox1
+            // currencyComboBox1
             // 
-            this.currencyListBox1.FormattingEnabled = true;
-            this.currencyListBox1.Location = new System.Drawing.Point(120, 190);
-            this.currencyListBox1.Name = "currencyListBox1";
-            this.currencyListBox1.Size = new System.Drawing.Size(90, 30);
-            this.currencyListBox1.TabIndex = 6;
+            this.currencyComboBox1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currencyComboBox1.FormattingEnabled = true;
+            this.currencyComboBox1.ItemHeight = 19;
+            this.currencyComboBox1.Items.AddRange(new object[] {
+            "USD",
+            "EUR",
+            "JPY",
+            "GBP",
+            "AUD",
+            "CHF",
+            "CAD",
+            "MXN",
+            "CNY",
+            "PLN"});
+            this.currencyComboBox1.Location = new System.Drawing.Point(120, 190);
+            this.currencyComboBox1.Name = "currencyComboBox1";
+            this.currencyComboBox1.Size = new System.Drawing.Size(140, 27);
+            this.currencyComboBox1.TabIndex = 6;
+            this.currencyComboBox1.UseWaitCursor = true;
+            this.currencyComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
             // currencyLabel2
             // 
             this.currencyLabel2.AutoSize = true;
-            this.currencyLabel2.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currencyLabel2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currencyLabel2.Location = new System.Drawing.Point(10, 230);
             this.currencyLabel2.Name = "currencyLabel2";
-            this.currencyLabel2.Size = new System.Drawing.Size(106, 24);
+            this.currencyLabel2.Size = new System.Drawing.Size(81, 19);
             this.currencyLabel2.TabIndex = 9;
             this.currencyLabel2.Text = "Currency";
+            this.currencyLabel2.Visible = false;
             // 
-            // currencyListBox2
+            // currencyComboBox2
             // 
-            this.currencyListBox2.FormattingEnabled = true;
-            this.currencyListBox2.Location = new System.Drawing.Point(120, 230);
-            this.currencyListBox2.Name = "currencyListBox2";
-            this.currencyListBox2.Size = new System.Drawing.Size(90, 30);
-            this.currencyListBox2.TabIndex = 8;
+            this.currencyComboBox2.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currencyComboBox2.FormattingEnabled = true;
+            this.currencyComboBox2.ItemHeight = 19;
+            this.currencyComboBox2.Items.AddRange(new object[] {
+            "USD",
+            "EUR",
+            "JPY",
+            "GBP",
+            "AUD",
+            "CHF",
+            "CAD",
+            "MXN",
+            "CNY",
+            "PLN"});
+            this.currencyComboBox2.Location = new System.Drawing.Point(120, 230);
+            this.currencyComboBox2.Name = "currencyComboBox2";
+            this.currencyComboBox2.Size = new System.Drawing.Size(140, 27);
+            this.currencyComboBox2.TabIndex = 8;
+            this.currencyComboBox2.Visible = false;
+            this.currencyComboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             // 
             // executeButton
             // 
-            this.executeButton.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.executeButton.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.executeButton.Location = new System.Drawing.Point(10, 10);
             this.executeButton.Name = "executeButton";
             this.executeButton.Size = new System.Drawing.Size(200, 50);
             this.executeButton.TabIndex = 10;
             this.executeButton.Text = "Execute";
             this.executeButton.UseVisualStyleBackColor = true;
+            this.executeButton.Click += new System.EventHandler(this.executeButton_Click);
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(220, 10);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
+            this.chart1.Location = new System.Drawing.Point(270, 10);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(571, 425);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(521, 425);
             this.chart1.TabIndex = 11;
             this.chart1.Text = "chart1";
+            series = this.chart1.Series.Add("Tytuł");
+            series.ChartType = SeriesChartType.Spline;
             // 
             // medianLabel
             // 
             this.medianLabel.AutoSize = true;
-            this.medianLabel.Location = new System.Drawing.Point(220, 440);
+            this.medianLabel.Location = new System.Drawing.Point(267, 441);
             this.medianLabel.Name = "medianLabel";
             this.medianLabel.Size = new System.Drawing.Size(48, 13);
             this.medianLabel.TabIndex = 12;
@@ -164,7 +219,7 @@
             // medianValue
             // 
             this.medianValue.AutoSize = true;
-            this.medianValue.Location = new System.Drawing.Point(260, 440);
+            this.medianValue.Location = new System.Drawing.Point(307, 441);
             this.medianValue.Name = "medianValue";
             this.medianValue.Size = new System.Drawing.Size(13, 13);
             this.medianValue.TabIndex = 13;
@@ -173,7 +228,7 @@
             // dominantLable
             // 
             this.dominantLable.AutoSize = true;
-            this.dominantLable.Location = new System.Drawing.Point(340, 440);
+            this.dominantLable.Location = new System.Drawing.Point(387, 441);
             this.dominantLable.Name = "dominantLable";
             this.dominantLable.Size = new System.Drawing.Size(58, 13);
             this.dominantLable.TabIndex = 14;
@@ -182,7 +237,7 @@
             // dominantValue
             // 
             this.dominantValue.AutoSize = true;
-            this.dominantValue.Location = new System.Drawing.Point(390, 440);
+            this.dominantValue.Location = new System.Drawing.Point(437, 441);
             this.dominantValue.Name = "dominantValue";
             this.dominantValue.Size = new System.Drawing.Size(13, 13);
             this.dominantValue.TabIndex = 15;
@@ -191,7 +246,7 @@
             // standardDeviationLabel
             // 
             this.standardDeviationLabel.AutoSize = true;
-            this.standardDeviationLabel.Location = new System.Drawing.Point(450, 440);
+            this.standardDeviationLabel.Location = new System.Drawing.Point(497, 441);
             this.standardDeviationLabel.Name = "standardDeviationLabel";
             this.standardDeviationLabel.Size = new System.Drawing.Size(104, 13);
             this.standardDeviationLabel.TabIndex = 16;
@@ -200,7 +255,7 @@
             // standardDeviationValue
             // 
             this.standardDeviationValue.AutoSize = true;
-            this.standardDeviationValue.Location = new System.Drawing.Point(550, 440);
+            this.standardDeviationValue.Location = new System.Drawing.Point(597, 441);
             this.standardDeviationValue.Name = "standardDeviationValue";
             this.standardDeviationValue.Size = new System.Drawing.Size(13, 13);
             this.standardDeviationValue.TabIndex = 17;
@@ -209,7 +264,7 @@
             // variationLabel
             // 
             this.variationLabel.AutoSize = true;
-            this.variationLabel.Location = new System.Drawing.Point(600, 440);
+            this.variationLabel.Location = new System.Drawing.Point(647, 441);
             this.variationLabel.Name = "variationLabel";
             this.variationLabel.Size = new System.Drawing.Size(54, 13);
             this.variationLabel.TabIndex = 18;
@@ -218,7 +273,7 @@
             // variationValue
             // 
             this.variationValue.AutoSize = true;
-            this.variationValue.Location = new System.Drawing.Point(650, 440);
+            this.variationValue.Location = new System.Drawing.Point(697, 441);
             this.variationValue.Name = "variationValue";
             this.variationValue.Size = new System.Drawing.Size(13, 13);
             this.variationValue.TabIndex = 19;
@@ -240,13 +295,13 @@
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.executeButton);
             this.Controls.Add(this.currencyLabel2);
-            this.Controls.Add(this.currencyListBox2);
+            this.Controls.Add(this.currencyComboBox2);
             this.Controls.Add(this.currencyLabel1);
-            this.Controls.Add(this.currencyListBox1);
+            this.Controls.Add(this.currencyComboBox1);
             this.Controls.Add(this.periodLabel);
-            this.Controls.Add(this.periodListBox);
+            this.Controls.Add(this.periodComboBox);
             this.Controls.Add(this.tableLabel);
-            this.Controls.Add(this.tableListBox);
+            this.Controls.Add(this.tableComboBox);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
@@ -257,14 +312,14 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox tableListBox;
+        private System.Windows.Forms.ComboBox tableComboBox;
         private System.Windows.Forms.Label tableLabel;
         private System.Windows.Forms.Label periodLabel;
-        private System.Windows.Forms.ListBox periodListBox;
+        private System.Windows.Forms.ComboBox periodComboBox;
         private System.Windows.Forms.Label currencyLabel1;
-        private System.Windows.Forms.ListBox currencyListBox1;
+        private System.Windows.Forms.ComboBox currencyComboBox1;
         private System.Windows.Forms.Label currencyLabel2;
-        private System.Windows.Forms.ListBox currencyListBox2;
+        private System.Windows.Forms.ComboBox currencyComboBox2;
         private System.Windows.Forms.Button executeButton;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label medianLabel;
