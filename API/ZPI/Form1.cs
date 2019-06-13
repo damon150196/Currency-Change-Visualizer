@@ -102,7 +102,7 @@ namespace ZPI
             url += "/";
 
             DateTime today = DateTime.Today;
-
+            
             DateTime start = DateTime.Today;
             switch(periodComboBox.Text)
             {
@@ -184,7 +184,7 @@ namespace ZPI
             }
         }
 
-        private double getStandardDeviation(List<double> doubleList)
+        public double getStandardDeviation(List<double> doubleList)
         {
             double average = doubleList.Average();
             double sumOfDerivation = 0;
@@ -195,7 +195,7 @@ namespace ZPI
             double sumOfDerivationAverage = sumOfDerivation / (doubleList.Count - 1);
             return Math.Sqrt(sumOfDerivationAverage - (average * average));
         }
-        private double getVariance(List<double> doubleList)
+        public double getVariance(List<double> doubleList)
         {
             double average = doubleList.Average();
             double sumOfDerivation = 0;
@@ -207,7 +207,7 @@ namespace ZPI
             return sumOfDerivationAverage - (average * average);
         }
 
-        private double getDominant(List<double> doubleList)
+        public double getDominant(List<double> doubleList)
         {
             Dictionary<double, int> tmp = new Dictionary<double, int>();
 
