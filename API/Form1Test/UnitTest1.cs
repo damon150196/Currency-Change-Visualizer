@@ -444,8 +444,68 @@ namespace Form1Test
             Assert.AreEqual(expectedStDev, resultStDev);
         }
 
-        // <=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<= Developer must correct formula stDev
-        // After correct write next tests to "getStandardDeviation"
+        [TestMethod]
+        public void TestEqstDevSamenumberDoubleOdd()
+        {
+            List<double> listToStDev = new List<double> { 0.258, 0.258, 0.258, 0.258, 0.258, 0.258, 0.258 };
+            double expectedStDev = 0;
+            double resultStDev;
+
+            resultStDev = form1.getStandardDeviation(listToStDev);
+
+            Assert.AreEqual(expectedStDev, resultStDev);
+        }
+
+        [TestMethod]
+        public void TestEqstDevSameNumberDoubleEven()
+        {
+            List<double> listToStDev = new List<double> { 0.258, 0.258, 0.258, 0.258, 0.258, 0.258 };
+            double expectedStDev = 0;
+            double resultStDev;
+
+            resultStDev = form1.getStandardDeviation(listToStDev);
+
+            Assert.AreEqual(expectedStDev, resultStDev);
+        }
+
+        [TestMethod]
+        public void TestEqstDevDiffDoubleEven()
+        {
+            List<double> listToStDev = new List<double> { 1.4568, 1.1576, 1.123, 1.123, 1.1483, 89.1599 };
+            double expectedStDev = 35.909;
+            double resultStDev;
+
+            resultStDev = form1.getStandardDeviation(listToStDev);
+            resultStDev = Math.Round(resultStDev, 3);
+
+            Assert.AreEqual(expectedStDev, resultStDev);
+        }
+
+        [TestMethod]
+        public void TestEqstDevDiffDoubleOdd()
+        {
+            List<double> listToStDev = new List<double> { 1.458, 1.26844, 145.19, 1.1565, 147.1, 1.1, 1.15 };
+            double expectedStDev = 70.71519;
+            double resultStDev;
+
+            resultStDev = form1.getStandardDeviation(listToStDev);
+            resultStDev = Math.Round(resultStDev, 5);
+
+            Assert.AreEqual(expectedStDev, resultStDev);
+        }
+
+        [TestMethod]
+        public void TestEqstDevDiffSignedDoubleOdd()
+        {
+            List<double> listToStDev = new List<double> { -1.458, -1.26844, -145.19, -1.1565, -147.1, -1.1, -1.15 };
+            double expectedStDev = 70.71519;
+            double resultStDev;
+
+            resultStDev = form1.getStandardDeviation(listToStDev);
+            resultStDev = Math.Round(resultStDev, 5);
+
+            Assert.AreEqual(expectedStDev, resultStDev);
+        }
 
 
         //  ----------------------------------------------------------------
@@ -500,8 +560,84 @@ namespace Form1Test
             Assert.AreEqual(expectedVariance, resultVariance);
         }
 
-        // <=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<= Developer must correct formula variance
-        // After correct write next tests to "getStandardDeviation"
+        [TestMethod]
+        public void TestEqVarianceDiffEven()
+        {
+            List<double> listToStDev = new List<double> { 1, 2, 3, 4, 5, 6 };
+            double expectedVariance = 3.5;
+            double resultVariance;
+
+            resultVariance = form1.getVariance(listToStDev);
+            resultVariance = Math.Round(resultVariance, 1);
+
+            Assert.AreEqual(expectedVariance, resultVariance);
+        }
+
+        [TestMethod]
+        public void TestEqVarianceDiffOdd()
+        {
+            List<double> listToStDev = new List<double> { 3, 4, 5, 6, 9 };
+            double expectedVariance = 5.3;
+            double resultVariance;
+
+            resultVariance = form1.getVariance(listToStDev);
+            resultVariance = Math.Round(resultVariance, 1);
+
+            Assert.AreEqual(expectedVariance, resultVariance);
+        }
+
+        [TestMethod]
+        public void TestEqVarianceOnesNumDoubleEven()
+        {
+            List<double> listToStDev = new List<double> { 1.74, 1.74, 1.74, 1.74, 1.74, 1.74 };
+            double expectedVariance = 0;
+            double resultVariance;
+
+            resultVariance = form1.getVariance(listToStDev);
+
+            Assert.AreEqual(expectedVariance, resultVariance);
+        }
+
+        [TestMethod]
+        public void TestEqVarianceDiffDoubleEven()
+        {
+            List<double> listToStDev = new List<double> { 1.87, 2.45, 3.485, 4.1235, 5.741, 6.554 };
+            double expectedVariance = 3.35311;
+            double resultVariance;
+
+            resultVariance = form1.getVariance(listToStDev);
+            resultVariance = Math.Round(resultVariance, 5);
+
+            Assert.AreEqual(expectedVariance, resultVariance);
+        }
+
+        [TestMethod]
+        public void TestEqVarianceDiffDoubleOdd()
+        {
+            List<double> listToStDev = new List<double> { 3.458, 4.7126, 5.456, 6.114, 9.001 };
+            double expectedVariance = 4.27935;
+            double resultVariance;
+
+            resultVariance = form1.getVariance(listToStDev);
+            resultVariance = Math.Round(resultVariance, 5);
+
+            Assert.AreEqual(expectedVariance, resultVariance);
+        }
+
+        [TestMethod]
+        public void TestEqVarianceDiffSignedDoubleOdd()
+        {
+            List<double> listToStDev = new List<double> { -3.458, -4.7126, -5.456, -6.114, -9.001 };
+            double expectedVariance = 4.27935;
+            double resultVariance;
+
+            resultVariance = form1.getVariance(listToStDev);
+            resultVariance = Math.Round(resultVariance, 5);
+
+            Assert.AreEqual(expectedVariance, resultVariance);
+        }
+
+        // Write more tests for dominante
 
 
         public void setDateToString()
