@@ -50,6 +50,8 @@ namespace ZPI
                     }
 
                     lista.Sort();
+                    chart1.ChartAreas[0].AxisY.Minimum = lista.Min() - 0.001* lista.Min();
+                    chart1.ChartAreas[0].AxisY.Maximum = lista.Max() + 0.001 * lista.Max();
 
                     double median = lista[lista.Count / 2];
                     double dominant = getDominant(lista)[0];
@@ -63,6 +65,7 @@ namespace ZPI
                 }
                 else if (tableComboBox.SelectedItem.ToString() == "buy/sold")
                 {
+                    lista = new List<double>();
                     this.chart1.Series.Clear();
                     buy = this.chart1.Series.Add(main.code.ToString() + " Buy");
                     buy.ChartType = SeriesChartType.Spline;
@@ -77,8 +80,13 @@ namespace ZPI
                         dynamic jrates = JObject.Parse(tmp.ToString());
                         buy.Points.AddXY(jrates.effectiveDate.ToString(), double.Parse(jrates.bid.ToString()));
                         sold.Points.AddXY(jrates.effectiveDate.ToString(), double.Parse(jrates.ask.ToString()));
+                        lista.Add(double.Parse(jrates.bid.ToString()));
+                        lista.Add(double.Parse(jrates.ask.ToString()));
                     }
                 }
+
+                chart1.ChartAreas[0].AxisY.Minimum = lista.Min() - 0.001 * lista.Min();
+                chart1.ChartAreas[0].AxisY.Maximum = lista.Max() + 0.001 * lista.Max();
             }
             catch(WebException)
             {
