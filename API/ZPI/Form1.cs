@@ -102,7 +102,7 @@ namespace ZPI
             url += "/";
 
             DateTime today = DateTime.Today;
-
+            
             DateTime start = DateTime.Today;
             switch(periodComboBox.Text)
             {

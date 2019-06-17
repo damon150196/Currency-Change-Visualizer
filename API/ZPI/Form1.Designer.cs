@@ -323,6 +323,10 @@ namespace ZPI
         private System.Windows.Forms.Label standardDeviationValue;
         private System.Windows.Forms.Label variationLabel;
         private System.Windows.Forms.Label variationValue;
+
+        public ComboBox TableComboBox { get => tableComboBox; set => tableComboBox = value; }
+        public ComboBox PeriodComboBox { get => periodComboBox; set => periodComboBox = value; }
+        public ComboBox CurrencyComboBox1 { get => currencyComboBox1; set => currencyComboBox1 = value; }
     }
 }
 
