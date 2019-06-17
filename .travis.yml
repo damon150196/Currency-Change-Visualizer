@@ -3,3 +3,4 @@ solution: ./API/ZPI/ZPI.sln
 script:
   - dotnet restore
   - dotnet test
+...
