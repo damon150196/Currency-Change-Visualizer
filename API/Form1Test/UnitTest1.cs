@@ -23,7 +23,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlUsdWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "USD";
 
@@ -39,7 +39,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlEurWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "EUR";
 
@@ -55,7 +55,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlJpyWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "JPY";
 
@@ -71,7 +71,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlGbpWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "GBP";
 
@@ -87,7 +87,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlAudWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "AUD";
 
@@ -103,7 +103,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlChfWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "CHF";
 
@@ -119,7 +119,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlCadWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "CAD";
 
@@ -135,7 +135,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlMxnWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "MXN";
 
@@ -151,7 +151,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlCnyWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "CNY";
 
@@ -167,7 +167,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlPlnWeekAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 week";
             form1.CurrencyComboBox1.Text = "PLN";
 
@@ -203,7 +203,7 @@ namespace Form1Test
         [TestMethod]
         public void TestEqCreateUrlUsdMonthAverage()
         {
-            form1.TableComboBox.SelectedItem = "Avarage";
+            form1.TableComboBox.SelectedItem = "Average";
             form1.PeriodComboBox.Text = "1 month";
             form1.CurrencyComboBox1.Text = "USD";
 
