@@ -1,7 +1,7 @@
 language: csharp
 solution: ./API/ZPI/ZPI.sln
 install:
-  - nuget restore solution-name.sln
+  - nuget restore ./API/ZPI/ZPI.sln
   - nuget install NUnit.Console -Version 3.9.0 -OutputDirectory testrunner
 script:
   - dotnet restore
