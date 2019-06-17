@@ -324,72 +324,119 @@ namespace Form1Test
         public void TestEqDominanteIntegerEven()
         {
             List<double> listToDominante = new List<double> { 1, 2, 3, 2, 2, 1 };
-            double expectedDominante = 2;
-            double resultDominante;
+            List<double> expectedDominante = new List<double> { 2 };
+            List<double> resultDominante;
 
             resultDominante = form1.getDominant(listToDominante);
+            resultDominante.Sort();
+            expectedDominante.Sort();
 
-            Assert.AreEqual(expectedDominante, resultDominante);
+            for(int iteratorExpected = 0; iteratorExpected < expectedDominante.Count; iteratorExpected++)
+            {
+                Assert.AreEqual(expectedDominante[iteratorExpected], resultDominante[iteratorExpected]);
+            }     
         }
 
         [TestMethod]
         public void TestEqDominanteIntegerOdd()
         {
             List<double> listToDominante = new List<double> { 1, 2, 3, 2, 2, 1, 5 };
-            double expectedDominante = 2;
-            double resultDominante;
+            List<double> expectedDominante = new List<double> { 2 };
+            List<double> resultDominante;
 
             resultDominante = form1.getDominant(listToDominante);
+            resultDominante.Sort();
+            expectedDominante.Sort();
 
-            Assert.AreEqual(expectedDominante, resultDominante);
+            for (int iteratorExpected = 0; iteratorExpected < expectedDominante.Count; iteratorExpected++)
+            {
+                Assert.AreEqual(expectedDominante[iteratorExpected], resultDominante[iteratorExpected]);
+            }
         }
 
         [TestMethod]
         public void TestEqDominanteIntegerOddOnes()
         {
             List<double> listToDominante = new List<double> { 1, 1, 1, 1, 1, 1, 1 };
-            double expectedDominante = 1;
-            double resultDominante;
+            List<double> expectedDominante = new List<double> { 1 };
+            List<double> resultDominante;
 
             resultDominante = form1.getDominant(listToDominante);
+            resultDominante.Sort();
+            expectedDominante.Sort();
 
-            Assert.AreEqual(expectedDominante, resultDominante);
+            for (int iteratorExpected = 0; iteratorExpected < expectedDominante.Count; iteratorExpected++)
+            {
+                Assert.AreEqual(expectedDominante[iteratorExpected], resultDominante[iteratorExpected]);
+            }
         }
 
         [TestMethod]
         public void TestEqDominanteIntegerZeros()
         {
             List<double> listToDominante = new List<double> { 0, 0, 0, 0, 0, 0 };
-            double expectedDominante = 0;
-            double resultDominante;
+            List<double> expectedDominante = new List<double> { 0 };
+            List<double> resultDominante;
 
             resultDominante = form1.getDominant(listToDominante);
+            resultDominante.Sort();
+            expectedDominante.Sort();
 
-            Assert.AreEqual(expectedDominante, resultDominante);
+            for (int iteratorExpected = 0; iteratorExpected < expectedDominante.Count; iteratorExpected++)
+            {
+                Assert.AreEqual(expectedDominante[iteratorExpected], resultDominante[iteratorExpected]);
+            }
         }
 
         [TestMethod]
         public void TestEqDominanteDouble()
         {
             List<double> listToDominante = new List<double> { 1.21, 1.21, 2.03, 0.08 };
-            double expectedDominante = 1.21;
-            double resultDominante;
+            List<double> expectedDominante = new List<double> { 1.21 };
+            List<double> resultDominante;
 
             resultDominante = form1.getDominant(listToDominante);
+            resultDominante.Sort();
+            expectedDominante.Sort();
 
-            Assert.AreEqual(expectedDominante, resultDominante);
+            for (int iteratorExpected = 0; iteratorExpected < expectedDominante.Count; iteratorExpected++)
+            {
+                Assert.AreEqual(expectedDominante[iteratorExpected], resultDominante[iteratorExpected]);
+            }
+        }
+
+        [TestMethod]
+        public void TestEqDominanteDoubleMoreThanOne()
+        {
+            List<double> listToDominante = new List<double> { 1.21, 1.21, 2.03, 2.03, 4.86 };
+            List<double> expectedDominante = new List<double> { 1.21, 2.03 };
+            List<double> resultDominante;
+
+            resultDominante = form1.getDominant(listToDominante);
+            resultDominante.Sort();
+            expectedDominante.Sort();
+
+            for (int iteratorExpected = 0; iteratorExpected < expectedDominante.Count; iteratorExpected++)
+            {
+                Assert.AreEqual(expectedDominante[iteratorExpected], resultDominante[iteratorExpected]);
+            }
         }
 
         [TestMethod]
         public void TestEqDominanteDoubleSameNumber()
         {
             List<double> listToDominante = new List<double> { 2.03, 2.03, 2.03, 2.03 };
-            double expectedDominante = 2.03;
-            double resultDominante;
+            List<double> expectedDominante = new List<double> { 2.03 };
+            List<double> resultDominante;
 
             resultDominante = form1.getDominant(listToDominante);
+            resultDominante.Sort();
+            expectedDominante.Sort();
 
-            Assert.AreEqual(expectedDominante, resultDominante);
+            for (int iteratorExpected = 0; iteratorExpected < expectedDominante.Count; iteratorExpected++)
+            {
+                Assert.AreEqual(expectedDominante[iteratorExpected], resultDominante[iteratorExpected]);
+            }
         }
 
         //  ----------------------------------------------------------------
@@ -636,9 +683,6 @@ namespace Form1Test
 
             Assert.AreEqual(expectedVariance, resultVariance);
         }
-
-        // Write more tests for dominante
-
 
         public void setDateToString()
         {
