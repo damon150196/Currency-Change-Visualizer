@@ -34,7 +34,7 @@ namespace ZPI
                 dynamic main = JObject.Parse(json);
                 JArray rates = main.rates;
 
-                if (tableComboBox.SelectedItem.ToString() == "Avarage")
+                if (tableComboBox.SelectedItem.ToString() == "Average")
                 {
                     lista = new List<double>();
                     this.chart1.Series.Clear();
@@ -52,7 +52,7 @@ namespace ZPI
                     lista.Sort();
 
                     double median = lista[lista.Count / 2];
-                    double dominant = getDominant(lista);
+                    double dominant = getDominant(lista)[0];
                     double stdev = getStandardDeviation(lista);
                     double variation = getVariance(lista);
 
@@ -93,7 +93,7 @@ namespace ZPI
         {
             string url = "http://api.nbp.pl/api/exchangerates/rates/";
 
-            if (tableComboBox.SelectedItem.ToString() == "Avarage")
+            if (tableComboBox.SelectedItem.ToString() == "Average")
                 url += "a/";
             else
                 url += "c/";
@@ -140,7 +140,7 @@ namespace ZPI
 
         private void tableListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(tableComboBox.SelectedItem.ToString() == "Avarage")
+            if(tableComboBox.SelectedItem.ToString() == "Average")
             {
                 currencyLabel2.Visible = false;
                 currencyComboBox2.Visible = false;
@@ -184,31 +184,24 @@ namespace ZPI
             }
         }
 
-        private double getStandardDeviation(List<double> doubleList)
+        public double getStandardDeviation(List<double> doubleList)
         {
-            double average = doubleList.Average();
-            double sumOfDerivation = 0;
-            foreach (double value in doubleList)
-            {
-                sumOfDerivation += (value) * (value);
-            }
-            double sumOfDerivationAverage = sumOfDerivation / (doubleList.Count - 1);
-            return Math.Sqrt(sumOfDerivationAverage - (average * average));
+            return Math.Sqrt(getVariance(doubleList));
         }
-        private double getVariance(List<double> doubleList)
+        public double getVariance(List<double> doubleList)
         {
             double average = doubleList.Average();
-            double sumOfDerivation = 0;
+            double sumOfVariance = 0;
             foreach (double value in doubleList)
             {
-                sumOfDerivation += (value) * (value);
+                sumOfVariance += (value - average) * (value - average);
             }
-            double sumOfDerivationAverage = sumOfDerivation / (doubleList.Count - 1);
-            return sumOfDerivationAverage - (average * average);
+            return sumOfVariance / (doubleList.Count - 1);
         }
 
-        private double getDominant(List<double> doubleList)
+        public List<double> getDominant(List<double> doubleList)
         {
+            List<double> result = new List<double>();
             Dictionary<double, int> tmp = new Dictionary<double, int>();
 
             foreach(double d in doubleList)
@@ -220,8 +213,16 @@ namespace ZPI
             }
             
             var sortedDict = from entry in tmp orderby entry.Value ascending select entry;
-            
-            return sortedDict.Last().Key;
+            int dominant = sortedDict.Last().Value;
+
+            for (int i=0; i<tmp.Count; i++)
+            {
+                if(tmp.Values.ElementAt(i) == dominant)
+                {
+                    result.Add(tmp.Keys.ElementAt(i));
+                }
+            }
+            return result;
         }
     }
 }
