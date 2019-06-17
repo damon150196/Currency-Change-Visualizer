@@ -52,7 +52,11 @@ namespace ZPI
                     lista.Sort();
 
                     double median = lista[lista.Count / 2];
-                    double dominant = getDominant(lista);
+                    foreach(double d in getDominant(lista))
+                    {
+                        Console.WriteLine(d);
+                    }
+                    double dominant = getDominant(lista)[0];
                     double stdev = getStandardDeviation(lista);
                     double variation = getVariance(lista);
 
@@ -199,8 +203,9 @@ namespace ZPI
             return sumOfVariance / (doubleList.Count - 1);
         }
 
-        private double getDominant(List<double> doubleList)
+        private List<double> getDominant(List<double> doubleList)
         {
+            List<double> result = new List<double>();
             Dictionary<double, int> tmp = new Dictionary<double, int>();
 
             foreach(double d in doubleList)
@@ -212,8 +217,16 @@ namespace ZPI
             }
             
             var sortedDict = from entry in tmp orderby entry.Value ascending select entry;
-            
-            return sortedDict.Last().Key;
+            int dominant = sortedDict.Last().Value;
+
+            for (int i=0; i<tmp.Count; i++)
+            {
+                if(tmp.Values.ElementAt(i) == dominant)
+                {
+                    result.Add(tmp.Keys.ElementAt(i));
+                }
+            }
+            return result;
         }
     }
 }
