@@ -1,4 +1,6 @@
-# ZPI_2019_Dzienni_IO4_JanuszeBiznesu
+# Currency-Change-Visualizer 
+
+# APP created to pass the subject in college. 
 
 # ZPI APP Release Notes
 Application for look out value of popular currency, cost buying and selling and also statistic data for values of currency in period. 
